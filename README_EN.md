@@ -40,7 +40,7 @@ So yes — this plugin helps you understand Chinese names like **Alibaba** (`BAB
 
 ## What It Does
 
-One sentence: give it a ticker, Claude becomes your analyst — pulls **22 dimensions of data**, runs **17 Wall-Street analysis models**, has **51 investors with distinct methodologies** score the stock, and produces a 600 KB Bloomberg-style HTML report.
+One sentence: give it a ticker, Claude becomes your analyst — pulls **22 dimensions of data**, runs **17 Wall-Street analysis models**, has **52 investors with distinct methodologies** score the stock, and produces a 600 KB Bloomberg-style HTML report.
 
 ```
 /stock-deep-analyzer:analyze-stock 600519         # Kweichow Moutai (A-share)
@@ -341,7 +341,7 @@ A: Best: use ticker codes (`BABA` / `00700.HK` / `600519.SH`). Name-resolution w
 A: Yes. The `quotes-knowledge-base.md` contains real published quotes from 45+ investors (22 Western, 23 Chinese), each with source URLs (Berkshire letters, Oaktree memos, books, interviews). Agents are instructed to mimic each investor's voice **using these real quotes**, not fabricate a "Buffett-style" line.
 
 **Q: Is this investment advice?**
-A: **No.** This is a research tool, not a fortune teller. The 51 investor opinions are rule-engine simulations, not the real people's views. Don't bet the farm on Claude's Buffett impression.
+A: **No.** This is a research tool, not a fortune teller. The 52 investor opinions are rule-engine simulations, not the real people's views. Don't bet the farm on Claude's Buffett impression.
 
 **Q: I'm behind the Great Firewall, will data sources work?**
 A: Most do. `akshare` / `yfinance` / Eastmoney / XueQiu all work from mainland China. Some Western sources (Bloomberg / Reuters) aren't used. DuckDuckGo web search occasionally rate-limits — see `docs/NETWORK-TROUBLESHOOTING.md` if the `3_macro` / `13_policy` / `15_events` dims report empty.
@@ -385,7 +385,7 @@ python run.py <ticker> --no-resume
    ┌──────────────────────────────────────────────┐
    │   Task 2 · Rule engine scoring               │
    │   22 dims → dimensions.json                  │
-   │   51 investors × 180 rules → panel.json      │
+   │   52 investors × 180 rules → panel.json      │
    └──────────────────────────────────────────────┘
                        ↓ HARD-GATE (agent takes over)
    ┌──────────────────────────────────────────────┐

@@ -593,14 +593,17 @@ def _render_school_lock_banner(syn: dict | None) -> str:
     label = lock.get("label") or group
 
     # 不同流派配色 · 让 banner 立刻识别（与 school_scores 区域呼应）
+    # v3.7.0 · 代表评委更新为真实在册成员 (B/C/E/G/H 加入新晋科技大佬)
     THEMES = {
-        "A": ("#065f46", "rgba(16,185,129,0.10)", "🛡️", "巴菲特 / 格雷厄姆 / 费雪 / 段永平 / 木头姐"),
-        "B": ("#1e40af", "rgba(59,130,246,0.10)", "🚀", "Bill Miller / Ron Baron / 段永平 成长视角"),
-        "C": ("#7c2d12", "rgba(217,119,6,0.10)", "🌍", "索罗斯 / 达里奥 / Stanley Druckenmiller"),
-        "D": ("#9d174d", "rgba(236,72,153,0.10)", "📈", "Mark Minervini / Stan Weinstein / Linda Raschke"),
-        "E": ("#7c3aed", "rgba(139,92,246,0.10)", "🇨🇳", "但斌 / 林园 / 李录 中国价投"),
+        "A": ("#065f46", "rgba(16,185,129,0.10)", "🛡️", "巴菲特 / 格雷厄姆 / 费雪 / 芒格 / 邓普顿 / 卡拉曼"),
+        "B": ("#1e40af", "rgba(59,130,246,0.10)", "🚀", "彼得·林奇 / 木头姐 / Andreessen (a16z) / Gurley / Naval / Gerstner / Chamath"),
+        "C": ("#7c2d12", "rgba(217,119,6,0.10)", "🌍", "索罗斯 / 达里奥 / Druckenmiller / Burry / Chanos"),
+        "D": ("#9d174d", "rgba(236,72,153,0.10)", "📈", "利弗莫尔 / 米内尔维尼 / 达瓦斯 / 江恩"),
+        "E": ("#7c3aed", "rgba(139,92,246,0.10)", "🇨🇳", "段永平 / 张坤 / 冯柳 / 邓晓峰 / 张磊 (高瓴)"),
         "F": ("#dc2626", "rgba(239,68,68,0.10)", "⚡", "赵老哥 / 孙哥 / 章盟主 / 葛卫东 / 炒股养家"),
-        "G": ("#0891b2", "rgba(8,145,178,0.10)", "🤖", "Renaissance / DE Shaw / Two Sigma 量化"),
+        "G": ("#0891b2", "rgba(8,145,178,0.10)", "🤖", "Renaissance (Simons) / Ed Thorp / DE Shaw / AQR (Asness)"),
+        "H": ("#b45309", "rgba(217,119,6,0.10)", "👑", "黄仁勋 / 马斯克 / Sam Altman / Saylor · 科技领袖派"),
+        "I": ("#4338ca", "rgba(99,102,241,0.10)", "🔗", "Serenity · AI 供应链卡脖子/瓶颈猎手"),
     }
     fg, bg, icon, members_hint = THEMES.get(group, ("#374151", "rgba(107,114,128,0.10)", "🎯", ""))
 
@@ -615,7 +618,7 @@ def _render_school_lock_banner(syn: dict | None) -> str:
         f'    </div>'
         f'    <div style="color:#1f2937">'
         f'      本次分析仅由 <strong style="color:{fg}">{group} · {label}</strong> 的评委参与评分 · '
-        f'其他 6 个流派的评委已 skip · 报告里"评委打分板 / 流派分数 / 多空辩论"均限于该派内.'
+        f'其他流派的评委已 skip · 报告里"评委打分板 / 流派分数 / 多空辩论"均限于该派内.'
         f'    </div>'
         f'    {f"<div style=\"margin-top:4px;color:#6b7280;font-size:11px\">代表评委 · {members_hint}</div>" if members_hint else ""}'
         f'  </div>'

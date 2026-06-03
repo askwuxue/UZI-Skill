@@ -50,7 +50,8 @@ def test_locked_school_invalid_ignored():
 
 def test_school_labels_cover_seven_groups():
     from lib.investor_evaluator import SCHOOL_LABELS
-    assert set(SCHOOL_LABELS.keys()) == {"A", "B", "C", "D", "E", "F", "G"}
+    # v3.6.3 · I 组「AI 卡位/瓶颈猎手」(重磅角色 Serenity, 独立成组) · H 组为 v3.7.0 科技领袖派
+    assert set(SCHOOL_LABELS.keys()) == {"A", "B", "C", "D", "E", "F", "G", "H", "I"}
     # 标签都是非空中文
     for k, v in SCHOOL_LABELS.items():
         assert v and isinstance(v, str), f"{k} 标签缺失"

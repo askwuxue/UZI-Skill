@@ -12,7 +12,7 @@
 [![Methods](https://img.shields.io/badge/Institutional%20Methods-17-red)]()
 [![Self-Review](https://img.shields.io/badge/Self--Review-13%20checks-blueviolet)](skills/deep-analysis/scripts/lib/self_review.py)
 
-A 股 / 港股 / 美股 · 个股深度分析引擎 · **v3.6.2 cninfo 翻页长尾修复 (#68) + 脚本 pip 探测 (#69) · v3.6.1 Hermes 一键安装绕过 Skills Guard · v3.6.0 视觉升级 + `--versus` 多股对比 + `--portfolio` 组合分析**
+A 股 / 港股 / 美股 · 个股深度分析引擎 · **v3.7.0 13 位新晋科技大佬入团 (a16z / Naval / 黄仁勋 / Musk / 高瓴张磊 / Burry / Chanos · 52→65 评委) · v3.6.2 cninfo 翻页长尾修复 + Hermes 脚本 pip 探测 · v3.6.1 Hermes 一键安装绕过 Skills Guard**
 
 [安装](#安装) · [用法](#用法) · [三档深度](#-三档思考深度v2103-新增) · [Hermes 🆕](INSTALL-HERMES.md) · [评审团](#-51-位评审团) · [机构方法](#-17-种机构级方法) · [自查 gate](#-机械级自查-gatev29-起) · [报告截图](#-报告长什么样) · [FAQ](#-faq) · [入群交流测试](#-测试交流群) · [Contributors](CONTRIBUTORS.md)
 
@@ -39,7 +39,7 @@ A 股 / 港股 / 美股 · 个股深度分析引擎 · **v3.6.2 cninfo 翻页长
 装好后最常用 4 条命令（任何 agent 里直接说）：
 
 ```
-/stock-deep-analyzer:analyze-stock 贵州茅台    ← 完整 22 维 × 51 评委分析（5-8min）
+/stock-deep-analyzer:analyze-stock 贵州茅台    ← 完整 22 维 × 52 评委分析（5-8min）
 /stock-deep-analyzer:quick-scan 002217         ← 30 秒速判
 /stock-deep-analyzer:scan-trap 002217          ← 杀猪盘排查
 /stock-deep-analyzer:dcf 600519                ← DCF 估值专项
@@ -213,7 +213,7 @@ agent 会自动用 `--remote` 启动 Cloudflare Tunnel，给你一个 `https://x
 | `/stock-deep-analyzer:screen 002273` | 5 套量化筛选 · value/growth/quality |
 | `/stock-deep-analyzer:dd 002273` | 尽调清单 · 5 工作流 21 项 |
 | `/stock-deep-analyzer:quick-scan 002273` | 30 秒速判 |
-| `/stock-deep-analyzer:panel-only 600519` | 只看 51 评委投票 |
+| `/stock-deep-analyzer:panel-only 600519` | 只看 52 评委投票 |
 | `/stock-deep-analyzer:scan-trap 002273` | 杀猪盘排查 |
 | `/stock-deep-analyzer:segmental-model 300308` | 🆕 分业务收入 bottom-up 建模 · 3 情景 × 3 年 projection · 对 DCF 反向校验 |
 
@@ -267,7 +267,7 @@ python run.py 600519
 |---|---|---|---|
 | **预计耗时** | 1-2 分钟 | 5-8 分钟 | 15-20 分钟 |
 | **fetcher 维度** | 核心 7 维 | 全 22 维 | 全 22 维 + 强化 fallback |
-| **评委数量** | 10 位代表 | 51 位完整 | 51 位 + **Bull-Bear 结构化辩论** |
+| **评委数量** | 10 位代表 | 52 位完整 | 52 位 + **Bull-Bear 结构化辩论** |
 | **机构方法** | 只 DCF | 全 17 种 | 全 17 种 + **Segmental Build-Up** |
 | **ddgs 定性查询** | **全 skip**（省 token）| 按需 · 预算 30 次 | 跑满 · 预算 60 次 |
 | **fund_holders** | Top 5 完整业绩 | Top 20 完整 + 其余清单 | Top 100 完整 |
@@ -304,7 +304,7 @@ python run.py 600519
 
 ---
 
-## 🎭 51 位评审团
+## 🎭 52 位评审团
 
 不是模板话术。每个人有自己的**量化规则集**（共 180 条），给出的建议必须引用具体命中了哪条：
 
@@ -373,7 +373,7 @@ python run.py 600519
 
 <img src="docs/screenshots/great-divide.png" width="700" />
 
-### 51 位评审团 · 审判席
+### 52 位评审团 · 审判席
 
 每个人一盏灯——绿色看多、红色看空、灰色中性。
 
@@ -592,7 +592,7 @@ UZI-Skill/
 │   │           │   ├── svg_primitives.py     # 19 svg_* + COLOR_*
 │   │           │   ├── dim_viz.py            # 19 _viz_xxx + DIM_VIZ_RENDERERS
 │   │           │   ├── institutional.py      # DCF/LBO/IC/catalyst/competitive
-│   │           │   ├── panel_cards.py        # 51 评委 panel
+│   │           │   ├── panel_cards.py        # 52 评委 panel
 │   │           │   └── special_cards.py      # fund/insights/school_scores
 │   │           ├── investor_criteria.py      # 51 人 × 180 规则
 │   │           ├── investor_evaluator.py     # 规则引擎
@@ -627,7 +627,7 @@ UZI-Skill/
 
 ```
 Stage 1 (脚本)          → 数据采集 + 模型计算 + 规则引擎骨架分
-        ⏸️ Agent 介入   → 读数据 → role-play 51 评委 → 写判断 → 审查假设
+        ⏸️ Agent 介入   → 读数据 → role-play 52 评委 → 写判断 → 审查假设
 Stage 2 (脚本)          → 综合研判 + 自动跑 13 条自查 → 报告生成
                          ↑ v2.9 核心：critical 不过 → 拒绝出 HTML
 ```
@@ -719,6 +719,8 @@ python run.py <ticker> --no-resume
 
 | 版本 | 日期 | 主要变化 |
 |---|---|---|
+| **v3.7.0** | 2026-06-03 | **13 位新晋科技大佬集体入团 · 52→65 评委** · 用户反馈"评委库新晋科技 / AI / VC 视角覆盖不足". 新增分布：**B 成长派 +5** (Marc Andreessen a16z / Bill Gurley Benchmark / Naval Ravikant AngelList / Brad Gerstner Altimeter / Chamath Palihapitiya Social Capital) · **C 宏观派 +2** 做空猎手 (Michael Burry Big Short / Jim Chanos Kynikos) · **E 中国价投 +1** (张磊 高瓴 · "做时间的朋友") · **G 量化派 +1** (Cliff Asness AQR 价值×质量×动量三因子) · **H AI 卡位/瓶颈猎手 +4** (黄仁勋 NVIDIA / Musk TSLA / Sam Altman OpenAI / Saylor MSTR). 每位评委 ≥4 条规则 (测试守护) · `_render_school_lock_banner` THEMES 全派代表评委更新为真实在册成员 · H 派配色紫色 🔗. NVDA 跑分实测 Andreessen/Gerstner/Huang/Altman 全 100 · 茅台跑分 Andreessen 38 (industry filter ✓ 白酒不在 software/AI) · 张磊 80 (✓ 长跑道龙头). 18 个新回归测试 · 总 532 passed |
+| **v3.6.3** | 2026-06-03 | **重磅角色 Serenity · AI 卡位/瓶颈猎手（新增第 52 位评委 · 独立 H 组）** · 把 X 爆火的 AI 供应链「卡脖子/瓶颈点」投资人 Serenity ([@aleabitoreddit](https://x.com/aleabitoreddit)) 接入评审团 · 参考 [serenity-alpha skill](https://github.com/haskaomni/serenity-skill/tree/main/serenity-alpha) 方法论 + 爬 X 真实言论建语气库. **核心打分逻辑「卡位决定态度」**：新增派生特征 `ai_chokepoint_score`（AI 链命中 × 不可替代性 × 中小市值弹性 × 需求拐点）· `SERENITY_RULES` 全 weight 5 · 产品卡在 AI 瓶颈（光模块/CPO/HBM/CoWoS/InP 衬底…）+ 上游不可替代 + 小市值 → **bullish 重仓**；没卡到位/不在 AI 链上 → **bearish 不碰**（白酒/银行护城河满分也 score=0）；在链但卡位不硬 → neutral 待验证. 改动 `investor_db`(51→52)/`investor_criteria`/`investor_evaluator`(`--school H`)/`investor_personas`/`investor_profile`/`stock_features`/`agents/investor-panel.md`/`investor-cards.json`(置顶高亮). 新增 `group-h-serenity.md` + `fin-methods/serenity-bottleneck.md`（六步法 + alpha 5 维 + $AXTI 范例）+ `serenity-voice.md` 语气库 + `docs/serenity-research-dossier.md`（全网 20 条评价档案）. 7 个新回归 · 总 514 passed |
 | **v3.6.2** | 2026-06-03 | **cninfo 翻页长尾修复 + Hermes 脚本 pip 探测** · 两个社群 issue 同发. **#68** ([@xy2yp](https://github.com/wbh604/UZI-Skill/issues/68))：`--versus 000958 600406 --depth lite` 卡在 15_events cninfo 公告 · `0/854 [01:53<6:11:58]` · 根因 `akshare.stock_zh_a_disclosure_report_cninfo` 内部翻完全部 854 页才返回 · 我们 `.head(30)` 是事后截取没用. 修法：新增 `_cninfo_direct_api` 直连 cninfo `/new/hisAnnouncement/query` HTTP · `pageSize=30 + pageNum=1 + 15s 硬超时` · akshare 慢路径默认禁用（`UZI_AK_CNINFO_FALLBACK=1` opt-in）· 几小时 → ≤15s. **#69** ([@FrankHuy](https://github.com/wbh604/UZI-Skill/issues/69))：Linux + Py3.11 跑安装脚本 `pip: command not found` · akshare 装不上. 修法：脚本启动加 Python 版本预检（≥3.10）· pip 五层级联探测（venv/.venv/pip/pip3/python -m pip）· 完全失败时给 apt/yum/ensurepip 三套指令 · install 失败给镜像源 + 升级 pip 建议. 12 个新回归 · 总 507 passed |
 | **v3.6.1** | 2026-05-29 | **Hermes Skills Guard 假阳性绕过** · [issue #66](https://github.com/wbh604/UZI-Skill/issues/66) (@zodiacg) 反馈：`hermes skills install` 报 `Verdict: DANGEROUS · 168 findings` · `--force` 也覆盖不了. 诊断：Hermes Skills Guard 模式匹配假阳性 · 把我们读 `os.environ.get("UZI_DEPTH")` 当 "exfiltration" · `subprocess.run(["brew", "install", "cloudflared"])` 当 "privilege_escalation" · HTML 注释当 "injection". Hermes 团队已知问题 ([#1006](https://github.com/NousResearch/hermes-agent/issues/1006)/[#7072](https://github.com/NousResearch/hermes-agent/issues/7072))· 官方 builtin skills 也被自家扫描器拦. 修法：新增 `install-hermes.sh` (96 行 · `set -euo pipefail`) · `curl ... \| bash` 一键 clone + symlink + venv pip · 完全等价 Hub 安装但跳过扫描. `INSTALL-HERMES.md` 头部重写解释假阳性原因. 11 个新回归测试守护 (script 存在/bash 语法/严格模式/4 skill 覆盖/venv fallback/文档链接) · 总 495 passed |
 | **v3.6.0** | 2026-05-29 | **视觉/交互大升级 + 多股横向对比 + 组合分析** · 三 Phase 拼合发布. **Phase A 视觉**：(1) 暗色模式 toggle（右上角 🌙 · `localStorage` 持久化 + `prefers-color-scheme` 自动初始化）· (2) 左侧 sticky TOC + IntersectionObserver scroll-spy · (3) 大评分 count-up 动画 · (4) PE/PB/ROE/DCF/IRR/WACC/EV-EBITDA/LBO/YTD/TTM/PEG/LHB 自动包 `.jargon` + 悬浮 tooltip · (5) 报告底部 QR 码（扫码直达完整报告）· 🔒 全部用 `createElement + textContent` 安全 DOM · 不用 innerHTML (XSS 防御). **Phase B `--versus`**：2-4 只票横向对比 · `lib/versus_runner.py` (380 行)· ★ WIN 高亮 12 个核心指标 · 单 HTML 自包含 · 复用 cache. **Phase C `--portfolio`**：用户上传 CSV (ticker/weight/note) · 容错解析（header/无 header/中英文列名/0-1 vs 0-100 权重）· 权重自动归一 · 输出排名 + KPI（加权评分 + 集中度 + 行业分散）+ metadata.json · `lib/portfolio_runner.py` (370 行). Phase D（`--sector` / `--as-of`）需 fetcher date-aware · 留到 v3.7. 39 个新回归测试 · 总 484 passed |

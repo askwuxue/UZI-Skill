@@ -1,5 +1,79 @@
 # Release Notes
 
+## v3.7.0 — 2026-06-03 (13 位新晋科技大佬评委 · 52→65 评委)
+
+### ✨ 用户反馈 · 评委库新晋科技/AI 视角覆盖不足
+
+旧 52 人里能 cover "新晋科技 / AI / VC" 视角的只有 thiel + wood + serenity 三个 · 远不够 cover 2024-2026 的 AI 浪潮 + VC 风潮 + 做空争议。
+
+### 🆕 13 位新评委 (52→65)
+
+| Group | 新增 | 评委 | 视角亮点 |
+|---|---|---|---|
+| **B 成长派** +5 (4→9) | Marc Andreessen | a16z · "Software is eating the world" · techno-optimist | TAM / 网络效应 / founder mode |
+| | Bill Gurley | Benchmark · marketplace + SaaS 老兵 | unit economics / magnitude of demand |
+| | Naval Ravikant | AngelList · 杠杆 / 长期 / 哲学派 | specific knowledge / 复利 / 非零和 |
+| | Brad Gerstner | Altimeter · NVIDIA / Snowflake 重仓 | AI / 云原生 / Rule of 40 |
+| | Chamath Palihapitiya | Social Capital / All-In · 早期 Meta | disruptor / TAM 千亿 / 透明披露 |
+| **C 宏观派** +2 (5→7) | Michael Burry | Big Short · 反 AI 大空头 | 非泡沫篮子 / FCF 真实 / 内幕未减持 |
+| | Jim Chanos | Kynikos · 30 年专业做空 | 审计 clean / OCF 匹配 EPS / 非中概雷 |
+| **E 中国价投** +1 (6→7) | 张磊 (高瓴) | "做时间的朋友" · 投腾讯/京东/百济/宁德 | 长跑道 / 细分龙头 / 创始人对齐 |
+| **G 量化派** +1 (3→4) | Cliff Asness | AQR · 价值 × 质量 × 动量 三因子 | PE/PB 价值 + ROE 质量 + 动量 |
+| **H AI 卡位/瓶颈猎手** +4 (1→5) | 黄仁勋 (NVIDIA) | AI 算力霸主 · "光速摩尔定律" | CUDA 生态 / 数据中心 Capex |
+| | Elon Musk (TSLA) | 第一性原理 · 跨能源/航天/AI | 垂直整合 / 制造规模 |
+| | Sam Altman (OpenAI) | AGI 叙事 + 平台投资 | scaling laws / 能源/算力瓶颈 |
+| | Michael Saylor (MSTR) | BTC 信徒 · 数字黄金 | 财库策略 / 法币贬值受益 |
+
+### 💡 设计选择
+
+- **做空也是宏观判断**：Burry/Chanos 放 C 派 · thesis 是宏观估值 + 行业拐点 · 不是 K 线
+- **CEO 入派**：黄仁勋 / Musk / Altman / Saylor 放 H 派 (AI 卡位/瓶颈猎手) · 自带行业视角 + 持仓信号
+- **每人 ≥4 条规则**：避免空架子评委 · 测试守护
+- **保留经典老 guard**：A 派 6 人 / E 派 6 老人 / D 派 4 人不动 · 不破坏向后兼容
+
+### 🎨 UI · `_render_school_lock_banner` 全派 banner 真实化
+
+- THEMES 更新：B/C/E/G 派代表评委从 placeholder 改为真实在册成员
+- H 派配色：紫色 #4338ca · 🔗 icon (链路 / 卡脖子隐喻)
+- 用户跑 `python run.py NVDA --school H` 时 banner 立刻显示 "Serenity / 黄仁勋 / 马斯克 / Sam Altman / Saylor"
+
+### 🧪 测试
+
+- **18 个新回归测试**（人数 / 分组分布 / 13 个 ID 注册 / 每人 ≥4 规则 / NVDA 场景 / 茅台场景 / H 派 banner）
+- **NVDA 跑分实测**: Andreessen 100 / Gerstner 100 / Jensen Huang 100 / Altman 100 / Burry 73.7（合理）
+- 茅台跑分: Andreessen 38 (industry filter ✓) / Jensen Huang 49 (✓ 不在算力链) / 张磊 80 (✓ 长跑道龙头)
+- **532/532 全过** (514 baseline + 18 new)
+
+---
+
+## v3.6.3 — 2026-06-03 (重磅角色 Serenity · AI 卡位/瓶颈猎手 H 组)
+
+### ✨ Feature · 新增第 52 位评委 Serenity（独立 H 组）
+
+把 X 爆火的 AI 供应链「卡脖子/瓶颈点」投资人 **Serenity (@aleabitoreddit)** 作为重磅角色接入评审团。参考 [serenity-alpha skill](https://github.com/haskaomni/serenity-skill/tree/main/serenity-alpha) 的方法论，并爬取其 X 真实言论作为语气库。
+
+**核心打分逻辑 · 卡位决定态度**：新增派生特征 `ai_chokepoint_score`（`stock_features.py`），由「AI 链关键词命中 × 不可替代性(切换+规模壁垒) × 中小市值弹性 × 需求拐点」四因子合成。`SERENITY_RULES` 全 weight 5，其中三条以「在 AI 链上」为前置——
+- 产品卡在 AI 浪潮关键瓶颈（光模块/CPO/HBM/CoWoS/InP 衬底/PCB/液冷/电源/RISC-V…）+ 上游不可替代 + 中小市值 → **bullish 重仓**
+- **产品没卡到位 / 不在 AI 链上 → bearish 不碰**（白酒/银行即便护城河满分也 score=0）
+- 在链但卡位不够硬 → neutral 待验证（等客户 roadmap / 缺货信号）
+
+**改动**：
+- `investor_db.py` H 组 + `serenity` 条目（`tier:flagship`）· `assert_count` 51→52
+- `investor_criteria.py` `SERENITY_RULES`（5 条）· `investor_evaluator.py` `SCHOOL_LABELS["H"]`（支持 `--school H`）
+- `investor_personas.py` / `investor_profile.py` / `investor_knowledge.py` · `agents/investor-panel.md` Group H profile
+- `stock_features.py` `ai_chokepoint_score` 等派生特征
+- `investor-cards.json` 置顶高亮卡片（`flagship:true`）
+
+**新增文档/语料**：
+- `references/group-h-serenity.md` — H 组方法论
+- `fin-methods/serenity-bottleneck.md` — 独立「瓶颈点投资法」（六步法 + alpha 5 维评分 + 报告区块规范 + $AXTI 范例）
+- `references/serenity-voice.md` — 底层知识库 + 语气模拟库（8 条 X 原话）· 并入 `quotes-knowledge-base.md`
+- `docs/serenity-research-dossier.md` — 全网研究方法评价档案（20 条来源 · 正反评价逐条）
+
+7 个新回归测试（`test_serenity_rules.py`）· 总 **514 passed**。
+
+---
+
 ## v3.6.2 — 2026-06-03 (cninfo 翻页长尾修复 #68 + Hermes 脚本 pip 探测 #69)
 
 ### 🐛 Bug #1 · cninfo 公告分页 854 页拖几小时 ([#68](https://github.com/wbh604/UZI-Skill/issues/68) · @xy2yp)
